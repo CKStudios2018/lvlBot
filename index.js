@@ -49,8 +49,8 @@ bot.on('message', (message) => {
 
     const parts = message.content.split(' ');
 
-    if(parts[0] === '!hello') {
-        message.reply('hi')
+    if(parts[0] === '!rank') {
+        message.reply(' has reached level ' + userStats.level)
     }
 });
 
