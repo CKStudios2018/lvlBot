@@ -50,7 +50,7 @@ bot.on('message', (message) => {
     const parts = message.content.split(' ');
 
     if(parts[0] === '!rank') {
-        message.reply(' has reached level ' + userStats.level)
+        message.reply(' you are at level ' + userStats.level)
     }
 });
 
