@@ -3,7 +3,7 @@ const random = require('random');
 const fs = require('fs');
 const jsonfile = require('jsonfile');
 
-
+const prefix = '!';
 const bot = new Discord.Client();
 
 client.commands = new Discord.Collection();
@@ -22,12 +22,14 @@ if (fs.existsSync('stats.json')) {
 
 
 bot.on('message', (message) => {
-    if (message.author.id == bot.user.id)
-        return;
+    if (!message.content.startsWith(prefix) || message.author.bot) return;
 
     if (message.guild.id in stats === false) {
         stats[message.guild.id] = {};
     }
+
+    const args = message.content.slice(prefix.length).split(/ +/);
+    const command = args.shift().toLowerCase();
 
 
     const guildStats = stats[message.guild.id];
@@ -38,6 +40,7 @@ bot.on('message', (message) => {
              last_message: 0
          };
     }
+    
 
     const userStats = guildStats[message.author.id];
     if (Date.now() - userStats.last_message > 30000) {
@@ -56,10 +59,9 @@ bot.on('message', (message) => {
 
 }
 
-    const parts = message.content.split(' ');
 
-    if(parts[0] === '!rank') {
-        message.reply(' you are at level ' + userStats.level)
+    if(command == 'rank'){
+        message.reply(' you are at level ' + userStats.level);
     }
 });
 
