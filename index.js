@@ -3,7 +3,7 @@ const random = require('random');
 const fs = require('fs');
 const jsonfile = require('jsonfile');
 
-const prefix = '!';
+const prefix = '-';
 const bot = new Discord.Client();
 
 bot.commands = new Discord.Collection();
