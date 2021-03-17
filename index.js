@@ -60,8 +60,10 @@ bot.on('message', (message) => {
 }
 
 
-    if(command == 'rank'){
+    if(command === 'rank'){
         message.reply(' you are at level ' + userStats.level);
+    } else if(command == 'help'){
+        client.commands.get('help').execute(message, args);
     }
 });
 
