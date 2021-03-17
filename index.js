@@ -12,7 +12,7 @@ const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith(
 for(const file of commandFiles){
     const command = require(`./commands/${file}`);
 
-    client.commands.set(command.name, command);
+    bot.commands.set(command.name, command);
 }
 
 var stats = {};
@@ -63,7 +63,7 @@ bot.on('message', (message) => {
     if(command === 'rank'){
         message.reply(' you are at level ' + userStats.level);
     } else if(command == 'help'){
-        client.commands.get('help').execute(message, args);
+        bot.commands.get('help').execute(message, args);
     }
 });
 
