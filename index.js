@@ -58,14 +58,8 @@ bot.on('message', (message) => {
 
     const parts = message.content.split(' ');
 
-    client.on('message', message =>{
-        if(!message.content.startsWith(prefix) || message.author.bot) return;
-    
-        const args = message.content.slice(prefix.length).split(/ +/);
-        const command = args.shift().toLowerCase();
-    
-        if(command === 'ping'){
-            message.reply(' you are at level ' + userStats.level);
+    if(parts[0] === '!rank') {
+        message.reply(' you are at level ' + userStats.level)
     }
 });
 
