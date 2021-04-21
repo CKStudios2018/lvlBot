@@ -15,6 +15,11 @@ for(const file of commandFiles){
     bot.commands.set(command.name, command);
 }
 
+bot.once('ready', async () => {
+    await bot.user.setPresence({ activity: { name: "Minecraft 1.7.10", type: "PLAYING" }, status: "online" });
+    console.log(`Logged in!`);
+});
+
 var stats = {};
 if (fs.existsSync('stats.json')) {
     stats = jsonfile.readFileSync('stats.json');
@@ -64,7 +69,10 @@ bot.on('message', (message) => {
         message.reply(' you are at level ' + userStats.level);
     } else if(command == 'help'){
         bot.commands.get('help').execute(message, args);
+    } else if(command == 'setrank'){                        //This command
+        userStats.level == [args];                          //Doesn't
+        message.reply('Your rank is now ' + args);          //Work
     }
 });
 
-bot.login(process.env.token);
+bot.login('ODA0MjMzMTkyNjM4MzgyMTAy.YBJWhw.lc5_2i95GCNsvRuV_siJjRUbnNc');
