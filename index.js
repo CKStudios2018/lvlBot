@@ -6,9 +6,6 @@ const jsonfile = require('jsonfile');
 
 const prefix = '-';
 const bot = new Discord.Client();
-const start = 'ODA0MjMzMTkyNjM4MzgyMTA';
-const end = 'qMFdxsMCJ81fdDvADhcYQQwd';
-const mathEnd = '4';
 
 bot.commands = new Discord.Collection();
 
@@ -79,4 +76,4 @@ bot.on('message', (message) => {
     }
 });
 
-bot.login(start + 'y.YBJWhw.-T' + end + mathEnd);
+bot.login(process.env.token);
