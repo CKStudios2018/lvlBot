@@ -1,4 +1,3 @@
-//This bot has the worse token censorship in the world
 const Discord = require('discord.js');
 const random = require('random');
 const fs = require('fs');
@@ -6,6 +5,8 @@ const jsonfile = require('jsonfile');
 
 const prefix = '-';
 const bot = new Discord.Client();
+const mentionedMember = message.mentions.members.first();
+const mentionId = message.mentions.members.first().user.id;
 
 bot.commands = new Discord.Collection();
 
@@ -70,9 +71,11 @@ bot.on('message', (message) => {
         message.reply(' you are at level ' + userStats.level);
     } else if(command == 'help'){
         bot.commands.get('help').execute(message, args);
-    } else if(command == 'setrank'){                        //This command
-        userStats.level == [args];                          //Doesn't
-        message.reply('Your rank is now ' + args);          //Work
+    } else if(command == 'setrank'){
+        if(!mentionedMember) return message.channel.send(" ")
+        if(!args[2]) return message.channel.send(" ")
+ 
+        mentionId.userStats.level == args[2]
     }
 });
 
