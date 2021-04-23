@@ -9,7 +9,7 @@
   "author": "CKS Dev Team",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^12.4.1",
+    "discord.js": "^12.5.3",
     "jsonfile": "^6.1.0",
     "random": "^2.2.0"
   }
