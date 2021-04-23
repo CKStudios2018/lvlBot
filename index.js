@@ -5,8 +5,6 @@ const jsonfile = require('jsonfile');
 
 const prefix = '-';
 const bot = new Discord.Client();
-const mentionedMember = message.mentions.members.first();
-const mentionId = message.mentions.members.first().user.id;
 
 bot.commands = new Discord.Collection();
 
@@ -72,11 +70,11 @@ bot.on('message', (message) => {
     } else if(command == 'help'){
         bot.commands.get('help').execute(message, args);
     } else if(command == 'setrank'){
-        if(!mentionedMember) return message.channel.send(" ")
-        if(!args[2]) return message.channel.send(" ")
+        if(!message.mentions.members.first()) return message.channel.send("You need to add in section `args[1]` a user")
+        if(!args[1]) return message.channel.send("You need to add in section `args[2]` a level")
  
-        mentionId.userStats.level == args[2]
+        message.mentions.members.first().user.id.userStats.level == args[1]
     }
 });
 
-bot.login(process.env.token);
+bot.login('ODA0MjMzMTkyNjM4MzgyMTAy.YBJWhw.-TqMFdxsMCJ81fdDvADhcYQQwd4');
