@@ -15,7 +15,7 @@ module.exports = {
             )
             .addField('\u200b', '\u200b')
             .addField("Help", '[Link](https://ckstudios2018.github.io/lvlBot/help/shop)', true)
-            .addField("Sell Item", '[Link](https://ckstudios2018.github.io/lvlBot/sell/)', true)
+            .addField("Sell Item", '[Link](https://ckstudios2018.github.io/lvlBot/shop/sell/)', true)
             .setTimestamp()
             .setFooter(`requested by ` + message.author.username + " (" + message.author.id + ")")
         message.channel.send(shopEmbed);
