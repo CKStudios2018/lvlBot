@@ -90,7 +90,7 @@ bot.on('message', (message) => {
             .setColor('#AE7BDA')
             .setTitle('Help')
             .setDescription('Get some commands help!')
-            .setURL('https://ckstudios2018.github.io/help/')
+            .setURL('https://ckstudios2018.github.io/lvlBot/help/')
             .addFields(
                 {name: 'Help', value: 'This embed', inline: true},
                 {name: 'Rank', value: 'Shows your DLB Rank', inline: true},
