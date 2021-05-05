@@ -85,7 +85,25 @@ bot.on('message', (message) => {
     if(command === 'rank'){
         message.reply(' you are at level ' + userStats.level);
     } else if(command == 'help'){
-        message.channel.send('My commands are: `help`, `rank`, `xp`, `bal`, `shop`, `buy`');
+        message.react('✅');
+        const helpEmbed = new Discord.MessageEmbed()
+            .setColor('#AE7BDA')
+            .setTitle('Help')
+            .setDescription('Get some commands help!')
+            .setURL('https://ckstudios2018.github.io/help/')
+            .addFields(
+                {name: 'Help', value: 'This embed', inline: true},
+                {name: 'Rank', value: 'Shows your DLB Rank', inline: true},
+                {name: 'XP', value: 'Shows your total DLB XP', inline: true},
+                {name: 'bal', value: 'Shows your balance', inline: true},
+                {name: 'Shop', value: 'Opens the shop', inline: true},
+                {name: 'buy', value: 'for buying an item', inline: true}
+            )
+            .addField('\u200b', '\u200b')
+            .addField("Website", '[Link](https://ckstudios2018.github.io/lvlBot/)', true)
+            .setTimestamp()
+            .setFooter(`requested by ` + message.author.username + " (" + message.author.id + ")")
+        message.channel.send(helpEmbed);
     } else if(command == 'xp'){
         message.reply(' your total XP is equal to ' + userStats.total_xp);
     } else if(command == 'bal'){
@@ -93,18 +111,21 @@ bot.on('message', (message) => {
     } else if(command == 'shop'){
         bot.commands.get('shop').execute(message, args, Discord);
     } else if(command == 'buy'){
-        const swapPrice = userStats.coins[50];
-        const swapUser = args[1].id;
-        if(args.length === 0) message.channel.send('please specify an item to buy ' + "\n" + 'Error: `missing command argument(s) found at arg[0] args[1]`');
-        else if(args[0] === 'levelcopy'){
-                if(userStats.coins >= swapPrice){
-                    userStats.coins -= swapPrice;
-                    userStats.level = swapUser.userStats.level;
-                } else{
-                message.reply("you don't have enough coins for that!")
-                }
+        if(message.guild.roles.cache.find(role => role.name === 'seller')) {
+            member.roles.add(role);
+        } else {
+            const guild = message.guild.id;
+            guild.roles.create({
+                data: {
+                  name: 'seller',
+                  color: 'BLUE',
+                },
+                reason: 'we needed a role for Super Cool People',
+              })
+                .then(console.log('done!'))
+                .catch(console.error);
         }
-        else message.channel.send('sorry that command is still a work in progress');
+        message.channel.send('sorry that command is still a work in progress');
     }
 });
 
