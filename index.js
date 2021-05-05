@@ -108,6 +108,7 @@ bot.on('message', (message) => {
         const balanceEmbed = new Discord.MessageEmbed()
             .setColor('#AE7BDD')
             .setTitle('Account details for ' + message.author.username)
+            .setThumbnail(message.author.avatarURL())
             .setURL('https://github.com/CKStudios2018/lvlBot/blob/main/stats.json')
             .addFields(
                 {name: 'Balance', value: userStats.coins, inline: true},
@@ -122,6 +123,16 @@ bot.on('message', (message) => {
     } else if(command == 'shop'){
         bot.commands.get('shop').execute(message, args, Discord);
     } else if(command == 'buy'){
+        var item = {};
+        const prices = item[message.author.id]
+        //if smaller than
+        if (userStats.coins < item.price) {
+            //if not enough coins
+            } else {
+            userStats.coins -= item.price;
+            message.reply('GG, you just bought ' + item.name);
+            addItemToTheUser(item);
+            }
         message.channel.send('sorry that command is still a work in progress');
     }
 });
