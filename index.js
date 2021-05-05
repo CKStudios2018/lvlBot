@@ -104,27 +104,24 @@ bot.on('message', (message) => {
             .setTimestamp()
             .setFooter(`requested by ` + message.author.username + " (" + message.author.id + ")")
         message.channel.send(helpEmbed);
-    } else if(command == 'xp'){
-        message.reply(' your total XP is equal to ' + userStats.total_xp);
     } else if(command == 'bal'){
-        message.reply(' your total balance is ' + userStats.coins);
+        const balanceEmbed = new Discord.MessageEmbed()
+            .setColor('#AE7BDD')
+            .setTitle('Account details for ' + message.author.username)
+            .setURL('https://github.com/CKStudios2018/lvlBot/blob/main/stats.json')
+            .addFields(
+                {name: 'Balance', value: userStats.coins, inline: true},
+                {name: 'Level', value: userStats.level, inline: true},
+                {name: 'Total XP', value: userStats.total_xp, inline: true}
+            )
+            .addField('\u200b', '\u200b')
+            .addField("Help", '[Link](https://ckstudios2018.github.io/lvlBot/help/)')
+            .setTimestamp()
+            .setFooter(`Account details for ` + message.author.username + " (" + message.author.id + ")")
+        message.channel.send(balanceEmbed);
     } else if(command == 'shop'){
         bot.commands.get('shop').execute(message, args, Discord);
     } else if(command == 'buy'){
-        if(message.guild.roles.cache.find(role => role.name === 'seller')) {
-            member.roles.add(role);
-        } else {
-            const guild = message.guild.id;
-            guild.roles.create({
-                data: {
-                  name: 'seller',
-                  color: 'BLUE',
-                },
-                reason: 'we needed a role for Super Cool People',
-              })
-                .then(console.log('done!'))
-                .catch(console.error);
-        }
         message.channel.send('sorry that command is still a work in progress');
     }
 });
