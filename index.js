@@ -2,10 +2,10 @@ const Discord = require('discord.js');
 const random = require('random');
 const fs = require('fs');
 const jsonfile = require('jsonfile');
+const { O_TRUNC } = require('constants');
 
-const prefix = '-';
+const prefix = '>';
 const bot = new Discord.Client();
-
 bot.commands = new Discord.Collection();
 
 const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
@@ -16,18 +16,19 @@ for(const file of commandFiles){
 }
 
 bot.once('ready', async () => {
-    await bot.user.setPresence({ activity: { name: "Minecraft 1.7.10", type: "PLAYING" }, status: "online" });
-    console.log(`Logged in!`);
+    await bot.user.setPresence({ activity: { name: "Levels", type: "LISTENING"}, status: 'dnd'})
+    console.log("ayo, I'm online");
 });
 
 var stats = {};
-if (fs.existsSync('stats.json')) {
+if(fs.existsSync('stats.json')) {
     stats = jsonfile.readFileSync('stats.json');
 }
 
-
 bot.on('message', (message) => {
     if (!message.content.startsWith(prefix) || message.author.bot) return;
+
+    let channel = message.channel;
 
     if (message.guild.id in stats === false) {
         stats[message.guild.id] = {};
@@ -36,45 +37,75 @@ bot.on('message', (message) => {
     const args = message.content.slice(prefix.length).split(/ +/);
     const command = args.shift().toLowerCase();
 
-
     const guildStats = stats[message.guild.id];
     if (message.author.id in guildStats === false) {
-         guildStats[message.author.id] = {
-             xp: 0,
-             level: 0,
-             last_message: 0
-         };
+        guildStats[message.author.id] = {
+            xp: 0,
+            total_xp: 0,
+            level: 0,
+            last_message: 0,
+            coins: 0
+        };
     }
-    
 
     const userStats = guildStats[message.author.id];
-    if (Date.now() - userStats.last_message > 30000) {
-    userStats.xp += random.int(25, 35);
-    userStats.last_message = Date.now();
+    if (Date.now() - userStats.last_message > 60000) { //Now it's 60s
+        userStats.xp += random.int(25, 35);
+        userStats.coins += random.int(1, 5);
+        userStats.total_xp += random.int(25, 35);
+        userStats.last_message = Date.now();
+        const xpToNextLvl = 5 * Math.pow(userStats.level, 2) + 50 * userStats.level + 100;
+        if(userStats.xp >= xpToNextLvl) {
+            const name = 'levels';
+            const Admin = message.guild.roles.cache.get("835850414183546910")
+            userStats.level++;
+            userStats.xp = userStats.xp - xpToNextLvl;
+            if(message.guild.channels.cache.find(chnl => chnl.name === 'levels')) {
+            message.guild.channels.cache.find(i => i.name === 'levels').send(`<@!${message.author.id}> has reached level ` + userStats.level);
+            } else{
+                message.guild.channels.create(name, {
+                    topic: `levels go here...`,
+                    permissionOverwrites: [{
+                        id: message.author.id,
+                        allow: ['VIEW_CHANNEL', 'READ_MESSAGE_HISTORY', 'ADD_REACTIONS'],
+                    }, {
+                        id: message.guild.id,
+                        deny: ['ADD_REACTIONS', 'ATTACH_FILES', 'SEND_MESSAGES'],
 
-    const xpToNextLvl = 5 * Math.pow(userStats.level, 2) + 50 * userStats.level + 100;
-    if(userStats.xp >= xpToNextLvl) {
-        userStats.level++;
-        userStats.xp = userStats.xp - xpToNextLvl;
-        message.reply(' has reached level ' + userStats.level);
-        console.log(message.author.username + ' has reached level ' + userStats.level);
+                    }, {
+                        id: Admin,
+                        allow: ['VIEW_CHANNEL', 'SEND_MESSAGES', 'READ_MESSAGE_HISTORY', 'ADD_REACTIONS']
+                    }]
+                })
+            }
+        }
+        jsonfile.writeFileSync('stats.json', stats);
     }
-
-    jsonfile.writeFileSync('stats.json', stats);
-
-}
-
 
     if(command === 'rank'){
         message.reply(' you are at level ' + userStats.level);
     } else if(command == 'help'){
-        bot.commands.get('help').execute(message, args);
-    } else if(command == 'setrank'){
-        if(!message.mentions.members.first()) return message.channel.send("You need to add in section `args[1]` a user")
-        if(!args[1]) return message.channel.send("You need to add in section `args[2]` a level")
- 
-        message.mentions.members.first().user.id.userStats.level == args[1]
+        message.channel.send('My commands are: `help`, `rank`, `xp`, `bal`, `shop`, `buy`');
+    } else if(command == 'xp'){
+        message.reply(' your total XP is equal to ' + userStats.total_xp);
+    } else if(command == 'bal'){
+        message.reply(' your total balance is ' + userStats.coins);
+    } else if(command == 'shop'){
+        bot.commands.get('shop').execute(message, args, Discord);
+    } else if(command == 'buy'){
+        const swapPrice = userStats.coins[50];
+        const swapUser = args[1].id;
+        if(args.length === 0) message.channel.send('please specify an item to buy ' + "\n" + 'Error: `missing command argument(s) found at arg[0] args[1]`');
+        else if(args[0] === 'levelcopy'){
+                if(userStats.coins >= swapPrice){
+                    userStats.coins -= swapPrice;
+                    userStats.level = swapUser.userStats.level;
+                } else{
+                message.reply("you don't have enough coins for that!")
+                }
+        }
+        else message.channel.send('sorry that command is still a work in progress');
     }
 });
 
-bot.login(process.env.token);
+bot.login('not process.env.token');

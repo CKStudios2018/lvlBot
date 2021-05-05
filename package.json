@@ -1,16 +1,17 @@
 {
-  "name": "discordsys",
+  "name": "discordlvlbot",
   "version": "1.0.0",
   "description": "",
-  "main": "main.js",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node ."
   },
-  "author": "CKS Dev Team",
+  "author": "Chawi",
   "license": "ISC",
   "dependencies": {
     "discord.js": "^12.5.3",
+    "fs": "0.0.1-security",
     "jsonfile": "^6.1.0",
-    "random": "^2.2.0"
+    "random": "^3.0.6"
   }
 }
