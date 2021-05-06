@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DLB - Sell</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -8,9 +10,12 @@
     <div class="sell-page">
     <div class="form">
         <form class="sell-form">
+            <p>Enter Product Name:</p>
             <input type="text" id="itemToSell" placeholder="Item name"/>
-            <input type="number" placeholder="Item price" value="0"/>
-            <button>Add Item to Store</button>
+            <p>Enter Product Price:</p>
+            <input type="number" id="priceToSell" placeholder="Item price" value="0"/>
+            <button onclick="sendMessage()">Add Item to Store</button>
+            <p id="errorCatch"></p>
         </form>
     </div>
     </div>
@@ -18,15 +23,17 @@
 <script>
     function sendMessage() {
       var inputVal = document.getElementById("itemToSell").value;
-      var loginVal = "https://discord.com/api/webhooks/839811951541485609/3FXzQJcAXbIUKreruqWMHwzqBuzexTVhVDmdqbRHoZaLuKGV1vsbyt_vlBYLQ1UC22zf"
+      var price = document.getElementById("priceToSell").value;
+      const loginVal = "https://discord.com/api/webhooks/839811951541485609/3FXzQJcAXbIUKreruqWMHwzqBuzexTVhVDmdqbRHoZaLuKGV1vsbyt_vlBYLQ1UC22zf";
       var request = new XMLHttpRequest();
       request.open("POST", loginVal);
       try {
         if(inputVal == "")  throw "empty";
+        if(price == "") throw "empty";
       }
       catch(err) {
-        loginVal.innerHTML = "DLB Webhook URL is " + err;
-        inputVal.innerHTML = "Item is " + err;
+        inputVal.innerHTML = "DLB Item is " + err;
+        price.innerHTML = "DLB Price is " + err;
       }
 
       request.setRequestHeader('Content-type', 'application/json');
@@ -34,7 +41,7 @@
       var params = {
         username: "",
         avatar_url: "",
-        content: inputVal
+        content: inputVal + price
       }
 
       request.send(JSON.stringify(params));
