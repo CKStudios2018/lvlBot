@@ -94,8 +94,7 @@ bot.on('message', (message) => {
             .addFields(
                 {name: 'Help', value: 'This embed', inline: true},
                 {name: 'Rank', value: 'Shows your DLB Rank', inline: true},
-                {name: 'XP', value: 'Shows your total DLB XP', inline: true},
-                {name: 'bal', value: 'Shows your balance', inline: true},
+                {name: 'bal', value: 'Shows your balance, rank and total XP', inline: true},
                 {name: 'Shop', value: 'Opens the shop', inline: true},
                 {name: 'buy', value: 'for buying an item', inline: true}
             )
@@ -123,17 +122,26 @@ bot.on('message', (message) => {
     } else if(command == 'shop'){
         bot.commands.get('shop').execute(message, args, Discord);
     } else if(command == 'buy'){
-        var item = {};
-        const prices = item[message.author.id]
-        //if smaller than
-        if (userStats.coins < item.price) {
-            //if not enough coins
+        const item = args[0]
+        if(args[0] === 'levelswap'){
+            const swapPrice = 550
+        if (userStats.coins < swapPrice) {
+            message.reply(' you dont have enough coins for that!');
             } else {
-            userStats.coins -= item.price;
-            message.reply('GG, you just bought ' + item.name);
-            addItemToTheUser(item);
+            userStats.coins -= swapPrice;
+            message.reply('GG, you just bought ' + item);
             }
         message.channel.send('sorry that command is still a work in progress');
+        } else if(args[0] == 'Cookie'){
+            const cookPrice = 6
+        if (userStats.coins < cookPrice) {
+            message.reply(' you dont have enough coins for that!');
+            } else {
+            userStats.coins -= cookPrice;
+            message.reply('GG, you just bought ' + item);
+            }
+        message.channel.send('sorry that command is still a work in progress');
+        }
     }
 });
 
