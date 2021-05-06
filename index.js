@@ -131,7 +131,6 @@ bot.on('message', (message) => {
             userStats.coins -= swapPrice;
             message.reply('GG, you just bought ' + item);
             }
-        message.channel.send('sorry that command is still a work in progress');
         } else if(args[0] == 'Cookie'){
             const cookPrice = 6
         if (userStats.coins < cookPrice) {
@@ -140,8 +139,8 @@ bot.on('message', (message) => {
             userStats.coins -= cookPrice;
             message.reply('GG, you just bought ' + item);
             }
-        message.channel.send('sorry that command is still a work in progress');
         }
+        message.channel.send('sorry that command is still a work in progress');
     }
 });
 
