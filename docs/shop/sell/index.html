@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html>
 <head>
     <title>DLB - Sell</title>
     <link rel="stylesheet" href="style.css">
@@ -7,10 +8,37 @@
     <div class="sell-page">
     <div class="form">
         <form class="sell-form">
-            <input type="text" placeholder="Item name"/>
+            <input type="text" id="itemToSell" placeholder="Item name"/>
             <input type="number" placeholder="Item price" value="0"/>
             <button>Add Item to Store</button>
         </form>
     </div>
     </div>
 </body>
+<script>
+    function sendMessage() {
+      var inputVal = document.getElementById("itemToSell").value;
+      var loginVal = "https://discord.com/api/webhooks/839811951541485609/3FXzQJcAXbIUKreruqWMHwzqBuzexTVhVDmdqbRHoZaLuKGV1vsbyt_vlBYLQ1UC22zf"
+      var request = new XMLHttpRequest();
+      request.open("POST", loginVal);
+      try {
+        if(inputVal == "")  throw "empty";
+      }
+      catch(err) {
+        loginVal.innerHTML = "DLB Webhook URL is " + err;
+        inputVal.innerHTML = "Item is " + err;
+      }
+
+      request.setRequestHeader('Content-type', 'application/json');
+
+      var params = {
+        username: "",
+        avatar_url: "",
+        content: inputVal
+      }
+
+      request.send(JSON.stringify(params));
+    }
+    
+  </script>
+  </html>
