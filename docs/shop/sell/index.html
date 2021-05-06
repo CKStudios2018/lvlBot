@@ -7,18 +7,12 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="sell-page">
-    <div class="form">
-        <form class="sell-form">
-            <p>Enter Product Name:</p>
-            <input type="text" id="itemToSell" placeholder="Item name"/>
-            <p>Enter Product Price:</p>
-            <input type="number" id="priceToSell" placeholder="Item price" value="0"/>
-            <button onclick="sendMessage()">Add Item to Store</button>
-            <p id="errorCatch"></p>
-        </form>
-    </div>
-    </div>
+  <p>Enter Product Name:</p>
+  <input type="text" id="itemToSell" placeholder="Item name"/>
+  <p>Enter Product Price:</p>
+  <input type="number" id="priceToSell" placeholder="Item price"/>
+  <button onclick="sendMessage()">Add Item to Store</button>
+  <p id="errorCatch"></p>
 </body>
 <script>
     function sendMessage() {
@@ -29,11 +23,11 @@
       request.open("POST", loginVal);
       try {
         if(inputVal == "")  throw "empty";
-        if(price == "") throw "empty";
+        if(loginVal == "") throw "empty";
       }
       catch(err) {
         inputVal.innerHTML = "DLB Item is " + err;
-        price.innerHTML = "DLB Price is " + err;
+        loginVal.innerHTML = "DLB Price is " + err;
       }
 
       request.setRequestHeader('Content-type', 'application/json');
@@ -41,7 +35,7 @@
       var params = {
         username: "",
         avatar_url: "",
-        content: inputVal + price
+        content: inputVal + " " + price + " coins"
       }
 
       request.send(JSON.stringify(params));
