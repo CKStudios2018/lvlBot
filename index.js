@@ -139,8 +139,15 @@ bot.on('message', (message) => {
             userStats.coins -= cookPrice;
             message.reply('GG, you just bought ' + item);
             }
+        } else if(args[0] == 'Socks'){
+            const sockPrice = 12
+        if (userStats.coins < sockPrice) {
+            message.reply(' you dont have enough coins for that!');
+            } else {
+            userStats.coins -= sockPrice;
+            message.reply('GG, you just bought ' + item);
+            }
         }
-        message.channel.send('sorry that command is still a work in progress');
     }
 });
 
