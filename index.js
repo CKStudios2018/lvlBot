@@ -44,7 +44,8 @@ bot.on('message', (message) => {
             total_xp: 0,
             level: 0,
             last_message: 0,
-            coins: 0
+            coins: 0,
+            coins_spent: 0
         };
     }
 
@@ -129,6 +130,7 @@ bot.on('message', (message) => {
             message.reply(' you dont have enough coins for that!');
             } else {
             userStats.coins -= swapPrice;
+            userStats.coins_spent += swapPrice;
             message.reply('GG, you just bought ' + item);
             }
         } else if(args[0] == 'Cookie'){
@@ -137,6 +139,7 @@ bot.on('message', (message) => {
             message.reply(' you dont have enough coins for that!');
             } else {
             userStats.coins -= cookPrice;
+            userStats.coins_spent += cookPrice;
             message.reply('GG, you just bought ' + item);
             }
         } else if(args[0] == 'Socks'){
@@ -145,6 +148,7 @@ bot.on('message', (message) => {
             message.reply(' you dont have enough coins for that!');
             } else {
             userStats.coins -= sockPrice;
+            userStats.coins_spent += sockPrice;
             message.reply('GG, you just bought ' + item);
             }
         }
