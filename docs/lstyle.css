@@ -1,0 +1,6 @@
+body{
+    background-image: linear-gradient(rgba(1, 1, 1, 1), rgba(1, 1, 1, 1)),url(pic1.jpg);
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+}
