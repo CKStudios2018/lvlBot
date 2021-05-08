@@ -7,12 +7,14 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <p>Enter Product Name:</p>
+  <p style="color:white;">Enter Product Name:</p>
   <input type="text" id="itemToSell" placeholder="Item name"/>
-  <p>Enter Product Price:</p>
+  <p style="color:white;">Enter Product Price:</p>
   <input type="number" id="priceToSell" placeholder="Item price"/>
   <button onclick="sendMessage()">Add Item to Store</button>
-  <p id="errorCatch"></p>
+  <p id="errorCatch" style="color:white;"></p>
+  <hr>
+  <button onclick="location.href='https://ckstudios2018.github.io/lvlBot';">Return Home</button>
 </body>
 <script>
     function sendMessage() {
