@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+require('discord-reply');
 const random = require('random');
 const fs = require('fs');
 const jsonfile = require('jsonfile');
@@ -111,9 +112,10 @@ bot.on('message', (message) => {
             .setThumbnail(message.author.avatarURL())
             .setURL('https://github.com/CKStudios2018/lvlBot/blob/main/stats.json')
             .addFields(
-                {name: 'Balance', value: userStats.coins, inline: true},
+                {name: 'Balance', value: userStats.coins + ' coins', inline: true},
                 {name: 'Level', value: userStats.level, inline: true},
-                {name: 'Total XP', value: userStats.total_xp, inline: true}
+                {name: 'Total XP', value: userStats.total_xp, inline: true},
+                {name: 'Coins Spent', value: userStats.coins_spent + ' coins', inline: true}
             )
             .addField('\u200b', '\u200b')
             .addField("Help", '[Link](https://ckstudios2018.github.io/lvlBot/help/)')
@@ -127,7 +129,7 @@ bot.on('message', (message) => {
         if(args[0] === 'levelswap'){
             const swapPrice = 550
         if (userStats.coins < swapPrice) {
-            message.reply(' you dont have enough coins for that!');
+            message.lineReply('`err:` You dont have enough coins for that!');
             } else {
             userStats.coins -= swapPrice;
             userStats.coins_spent += swapPrice;
@@ -136,7 +138,7 @@ bot.on('message', (message) => {
         } else if(args[0] == 'Cookie'){
             const cookPrice = 6
         if (userStats.coins < cookPrice) {
-            message.reply(' you dont have enough coins for that!');
+            message.lineReply('`err:` You dont have enough coins for that!');
             } else {
             userStats.coins -= cookPrice;
             userStats.coins_spent += cookPrice;
@@ -145,7 +147,7 @@ bot.on('message', (message) => {
         } else if(args[0] == 'Socks'){
             const sockPrice = 12
         if (userStats.coins < sockPrice) {
-            message.reply(' you dont have enough coins for that!');
+            message.lineReply('`err:` You dont have enough coins for that!');
             } else {
             userStats.coins -= sockPrice;
             userStats.coins_spent += sockPrice;

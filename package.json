@@ -9,6 +9,7 @@
   "author": "Chawi",
   "license": "ISC",
   "dependencies": {
+    "discord-reply": "^0.1.2",
     "discord.js": "^12.5.3",
     "fs": "0.0.1-security",
     "jsonfile": "^6.1.0",
