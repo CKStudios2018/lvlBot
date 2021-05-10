@@ -21,7 +21,7 @@ module.exports = {
         .addField("Discord Server", "None", true)
         .addField("YouTube", "[Alkazar](https://www.youtube.com/channel/UCNioMTBy56r2S-AOWv_7z-Q)", true)
         .addField("Twitch", "[AlkazarG](https://www.twitch.tv/alkazarg)", true)
-        .setThumbnail('https://cdn.discordapp.com/attachments/808276626734579753/835097470148411422/image0.jpg')
+        .setThumbnail('https://cdn.discordapp.com/avatars/503538108705538050/5a0c5b420fce33805cdf846ee76fc463.png?size=128')
         .setTimestamp()
         .setFooter('Alkazar™#2370')
         .setColor('RANDOM')
