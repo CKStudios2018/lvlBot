@@ -68,6 +68,9 @@ bot.on('message', (message) => {
                 message.guild.channels.create(name, {
                     topic: `levels go here...`,
                     permissionOverwrites: [{
+                        id: bot.id,
+                        allow: ['VIEW_CHANNEL', 'READ_MESSAGE_HISTORY', 'ADD_REACTIONS', 'SEND_MESSAGES'],
+                    }, {
                         id: message.author.id,
                         allow: ['VIEW_CHANNEL', 'READ_MESSAGE_HISTORY', 'ADD_REACTIONS'],
                     }, {
