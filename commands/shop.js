@@ -9,7 +9,7 @@ module.exports = {
             .setDescription('Spend your coins in the wholesome shop!')
             .setURL('https://github.com/CKStudios2018/lvlBot/blob/main/commands/shop.js')
             .addFields(
-                {name: 'Coderino', value: '12000 coins', inline: true},
+                {name: 'Lamborghini Huracán Evo', value: '261274 coins', inline: true},
                 {name: 'Cookie', value: '6 coins', inline: true},
                 {name: 'Level Copy', value: '550 coins', inline: true},
                 {name: 'Socks', value: '12 coins', inline: true}
