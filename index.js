@@ -89,22 +89,7 @@ bot.on('message', (message) => {
     } else if(command == 'help'){
         bot.commands.get('help').run(message, args, Discord);
     } else if(command == 'bal'){
-        const balanceEmbed = new Discord.MessageEmbed()
-            .setColor('#AE7BDD')
-            .setTitle('Account details for ' + message.author.username)
-            .setThumbnail(message.author.avatarURL())
-            .setURL('https://github.com/CKStudios2018/lvlBot/blob/main/stats.json')
-            .addFields(
-                {name: 'Balance', value: userStats.coins + ' coins', inline: true},
-                {name: 'Level', value: userStats.level, inline: true},
-                {name: 'Total XP', value: userStats.total_xp, inline: true},
-                {name: 'Coins Spent', value: userStats.coins_spent + ' coins', inline: true}
-            )
-            .addField('\u200b', '\u200b')
-            .addField("Help", '[Link](https://ckstudios2018.github.io/lvlBot/help/)')
-            .setTimestamp()
-            .setFooter(`Account details for ` + message.author.username + " (" + message.author.id + ")")
-        message.channel.send(balanceEmbed);
+        bot.commands.get('bal').run(message, args, Discord);
     } else if(command == 'shop'){
         bot.commands.get('shop').execute(message, args, Discord);
     } else if(command == 'buy'){
