@@ -97,6 +97,8 @@ bot.on('message', (message) => {
         bot.commands.get('shop').execute(message, args, Discord);
     } else if(command == 'buy'){
         bot.commands.get('buy').run(message, args, Discord, userStats);
+    } else if(command == 'credits'){
+        bot.commands.get('credits').execute(message, args, Discord);
     }
 });
 
