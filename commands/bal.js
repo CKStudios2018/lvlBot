@@ -32,8 +32,8 @@ module.exports = {
             userStats.level++;
             userStats.xp = userStats.xp - xpToNextLvl;
             if(message.guild.channels.cache.find(chnl => chnl.name === 'levels')) {
-            message.guild.channels.cache.find(i => i.name === 'levels').send(`<@!${message.author.id}> has reached level ` + userStats.level);
-            } else{
+              message.guild.channels.cache.find(i => i.name === 'levels').send(`<@!${message.author.id}> has reached level ` + userStats.level);
+            } else {
                 message.guild.channels.create(name, {
                     topic: `levels go here...`,
                     permissionOverwrites: [{
