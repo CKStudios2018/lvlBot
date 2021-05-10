@@ -1,7 +1,7 @@
 module.exports = {
   name: 'buy',
   description: 'Buy stuff',
-  async run(message, args, Discord){
+  async run(message, args, Discord, userStats){
  const item = args[0]
         if(args[0] === 'levelswap'){
             const swapPrice = 550
@@ -30,5 +30,6 @@ module.exports = {
             userStats.coins_spent += sockPrice;
             message.reply('GG, you just bought ' + item);
             }
-  }
+        }
+    }
 }

@@ -89,11 +89,11 @@ bot.on('message', (message) => {
     } else if(command == 'help'){
         bot.commands.get('help').run(message, args, Discord);
     } else if(command == 'bal'){
-        bot.commands.get('bal').run(message, args, Discord);
+        bot.commands.get('bal').run(message, args, Discord, userStats);
     } else if(command == 'shop'){
         bot.commands.get('shop').execute(message, args, Discord);
     } else if(command == 'buy'){
-        bot.commands.get('buy').run(message, args, Discord);
+        bot.commands.get('buy').run(message, args, Discord, userStats);
     }
 });
 
