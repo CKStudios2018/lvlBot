@@ -4,7 +4,7 @@ module.exports = {
     execute(message, args, Discord){
         message.react('✅');
         const shopEmbed = new Discord.MessageEmbed()
-            .setColor('#AE7BDD')
+            .setColor('RANDOM')
             .setTitle('Shop')
             .setDescription('Spend your coins in the wholesome shop!')
             .setURL('https://github.com/CKStudios2018/lvlBot/blob/main/commands/shop.js')
