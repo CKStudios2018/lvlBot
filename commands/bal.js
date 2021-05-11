@@ -3,7 +3,7 @@ module.exports = {
   description: 'Ur balance',
   async run(message, args, Discord, userStats){
     const balanceEmbed = new Discord.MessageEmbed()
-            .setColor('#AE7BDD')
+            .setColor('RANDOM')
             .setTitle('Account details for ' + message.author.username)
             .setThumbnail(message.author.avatarURL())
             .setURL('https://github.com/CKStudios2018/lvlBot/blob/main/stats.json')

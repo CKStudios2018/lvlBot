@@ -2,7 +2,6 @@ module.exports = {
     name: 'shop',
     description: "this is a store opening command",
     execute(message, args, Discord){
-        message.react('✅');
         const shopEmbed = new Discord.MessageEmbed()
             .setColor('RANDOM')
             .setTitle('Shop')
