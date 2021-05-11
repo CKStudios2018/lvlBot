@@ -2,6 +2,9 @@ module.exports = {
   name: 'buy',
   description: 'Buy stuff',
   async run(message, args, Discord, userStats){
+      if(!args){
+          message.lineReply('`err0:` You need to specify item at args[0]')
+      } else {
  const item = args[0]
         if(args[0] === 'levelswap'){
             const swapPrice = 550
@@ -30,6 +33,16 @@ module.exports = {
             userStats.coins_spent += sockPrice;
             message.reply('GG, you just bought ' + item);
             }
+        } else if(args[0] == 'V1RU5'){
+            const hackPrice = 24
+            if (userStats.coins < hackPrice) {
+                message.lineReply('`err:` You dont have enough coins for that!');
+            } else {
+                userStats.coins -= hackPrice;
+                userStats.coins_spent += hackPrice;
+                message.reply('GG, you just got hacked');
+            }
         }
     }
+}
 }
