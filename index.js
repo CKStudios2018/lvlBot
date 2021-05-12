@@ -46,14 +46,19 @@ bot.on('message', (message) => {
             level: 0,
             last_message: 0,
             coins: 0,
-            coins_spent: 0
+            coins_spent: 0,
+            own_store: 0
         };
     }
 
     const userStats = guildStats[message.author.id];
     if (Date.now() - userStats.last_message > 60000) { //Now it's 60s
-        userStats.xp += random.int(25, 35);
-        userStats.coins += random.int(1, 5);
+        if(userStats.own_store == 0){
+            userStats.xp += random.int(25, 35);
+            userStats.coins += random.int(1, 5);
+        } else {
+            userStats.coins += random.int(2, 10);
+        }
         userStats.total_xp += random.int(25, 35);
         userStats.last_message = Date.now();
         const xpToNextLvl = 5 * Math.pow(userStats.level, 2) + 50 * userStats.level + 100;
@@ -91,6 +96,7 @@ bot.on('message', (message) => {
         message.reply(' you are at level ' + userStats.level);
     } else if(command == 'help'){
         bot.commands.get('help').run(message, args, Discord);
+        message.channel.send(`code ${bot.guilds.cache.size}`);
     } else if(command == 'bal'){
         bot.commands.get('bal').run(message, args, Discord, userStats);
     } else if(command == 'shop'){
@@ -99,6 +105,8 @@ bot.on('message', (message) => {
         bot.commands.get('buy').run(message, args, Discord, userStats);
     } else if(command == 'credits'){
         bot.commands.get('credits').execute(message, args, Discord);
+    } else if(command == 'biz'){
+        bot.commands.get('biz').run(message, args, Discord, userStats);
     }
 });
 

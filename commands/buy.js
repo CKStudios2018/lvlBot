@@ -38,6 +38,17 @@ module.exports = {
                 userStats.coins -= hackPrice;
                 userStats.coins_spent += hackPrice;
                 message.reply('GG, you just got hacked');
+            } 
+        } else if(args[0] == 'biz'){
+            const bizPrice = 2000
+            const hasBiz = 1
+            if(userStats.coins < bizPrice){
+                message.lineReply('`err:` You dont have enough coins for that!');
+            } else {
+                userStats.coins -= bizPrice;
+                userStats.coins_spent += bizPrice;
+                userStats.own_store += hasBiz;
+                message.reply('GG, you now have a buisiness');
             }
         }
     }

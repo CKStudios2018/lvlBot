@@ -12,7 +12,8 @@ module.exports = {
                 {name: 'Cookie', value: '6 coins', inline: true},
                 {name: 'Level Copy', value: '550 coins', inline: true},
                 {name: 'Socks', value: '12 coins', inline: true},
-                {name: 'V1RU5', value: '24 coins', inline: true}
+                {name: 'V1RU5', value: '24 coins', inline: true},
+                {name: 'biz', value: "It's a business, ok? \n 2000 coins", inline: true}
             )
             .addField('\u200b', '\u200b')
             .addField("Help", '[Link](https://ckstudios2018.github.io/lvlBot/help/shop)', true)
