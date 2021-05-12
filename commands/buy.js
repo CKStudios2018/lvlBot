@@ -1,10 +1,7 @@
 module.exports = {
   name: 'buy',
   description: 'Buy stuff',
-  async run(message, args, Discord, userStats){
-      if(!args){
-          message.lineReply('`err0:` You need to specify item at args[0]')
-      } else {
+  async run(message, args, Discord, userStats){ 
  const item = args[0]
         if(args[0] === 'levelswap'){
             const swapPrice = 550
@@ -44,5 +41,4 @@ module.exports = {
             }
         }
     }
-}
 }
