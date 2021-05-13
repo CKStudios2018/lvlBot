@@ -106,7 +106,7 @@ bot.on('message', (message) => {
     } else if(command == 'credits'){
         bot.commands.get('credits').execute(message, args, Discord);
     } else if(command == 'biz'){
-        bot.commands.get('biz').run(message, args, Discord, userStats);
+        bot.commands.get('bizno').run(message, args, Discord, userStats);
     }
 });
 
