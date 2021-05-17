@@ -40,7 +40,7 @@ module.exports = {
                 message.reply('GG, you just got hacked');
             } 
         } else if(args[0] == 'biz'){
-            const bizPrice = 2000
+            const bizPrice = 20
             const hasBiz = 1
             if(userStats.coins < bizPrice){
                 message.lineReply('`err:` You dont have enough coins for that!');
@@ -48,7 +48,11 @@ module.exports = {
                 userStats.coins -= bizPrice;
                 userStats.coins_spent += bizPrice;
                 userStats.own_store += hasBiz;
-                message.reply('GG, you now have a buisiness');
+                if(userStats.own_store == 1){
+                    message.reply('GG, you now have a business');
+                } else{
+                    message.reply('GG, you now have an additional business')
+                }
             }
         }
     }

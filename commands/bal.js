@@ -12,7 +12,7 @@ module.exports = {
                 {name: 'Level', value: userStats.level, inline: true},
                 {name: 'Total XP', value: userStats.total_xp, inline: true},
                 {name: 'Coins Spent', value: userStats.coins_spent + ' coins', inline: true},
-                {name: 'Biz Owned', value: '(1=yes, 0=no) ' + userStats.own_store, inline: true}
+                {name: 'Biz Owned', value: userStats.own_store, inline: true}
             )
             .addField('\u200b', '\u200b')
             .addField("Help", '[Link](https://ckstudios2018.github.io/lvlBot/help/)')
