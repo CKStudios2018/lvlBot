@@ -40,7 +40,7 @@ module.exports = {
                 message.reply('GG, you just got hacked');
             } 
         } else if(args[0] == 'biz'){
-            const bizPrice = 20
+            const bizPrice = 2000
             const hasBiz = 1
             if(userStats.coins < bizPrice){
                 message.lineReply('`err:` You dont have enough coins for that!');
