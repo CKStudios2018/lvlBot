@@ -104,7 +104,7 @@ bot.on('message', (message) => {
     } else if(command == 'shop'){
         bot.commands.get('shop').execute(message, args, Discord);
     } else if(command == 'buy'){
-        bot.commands.get('buy').run(message, args, Discord, userStats);
+        bot.commands.get('buy').run(message, args, jsonfile, stats, guildStats, userStats);
     } else if(command == 'credits'){
         bot.commands.get('credits').execute(message, args, Discord);
     } else if(command == 'biz'){
