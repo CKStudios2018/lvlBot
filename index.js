@@ -56,10 +56,12 @@ bot.on('message', (message) => {
         if(userStats.own_store == 0){
             userStats.xp += random.int(25, 35);
             userStats.coins += random.int(1, 5);
+            userStats.total_xp += random.int(25, 35);
         } else {
-            userStats.coins += random.int(2, 10);
+            userStats.xp += random.int(30, 35) * userStats.own_store;
+            userStats.coins += random.int(2, 10) * userStats.own_store;
+            userStats.total_xp += random.int(30, 35) * userStats.own_store;
         }
-        userStats.total_xp += random.int(25, 35);
         userStats.last_message = Date.now();
         const xpToNextLvl = 5 * Math.pow(userStats.level, 2) + 50 * userStats.level + 100;
         if(userStats.xp >= xpToNextLvl) {
