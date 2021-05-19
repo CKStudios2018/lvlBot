@@ -4,7 +4,7 @@ module.exports = {
   async run(message, args, jsonfile, stats, guildStats, userStats){ 
  const item = args[0]
         if(args[0] === 'levelswap'){
-            const swapPrice = 550
+            const swapPrice = 5500
         if (userStats.coins < swapPrice) {
             message.lineReply('`err:` You dont have enough coins for that!');
             } else {
@@ -12,7 +12,7 @@ module.exports = {
             userStats.coins_spent += swapPrice;
             message.reply('GG, you just bought ' + item);
             }
-        } else if(args[0] == 'Cookie'){
+        } else if(args[0] == 'cookie'){
             const cookPrice = 6
         if (userStats.coins < cookPrice) {
             message.lineReply('`err:` You dont have enough coins for that!');
@@ -21,7 +21,7 @@ module.exports = {
             userStats.coins_spent += cookPrice;
             message.reply('GG, you just bought ' + item);
             }
-        } else if(args[0] == 'Socks'){
+        } else if(args[0] == 'socks'){
             const sockPrice = 12
         if (userStats.coins < sockPrice) {
             message.lineReply('`err:` You dont have enough coins for that!');
@@ -30,7 +30,7 @@ module.exports = {
             userStats.coins_spent += sockPrice;
             message.reply('GG, you just bought ' + item);
             }
-        } else if(args[0] == 'V1RU5'){
+        } else if(args[0] == 'v1ru5'){
             const hackPrice = 24
             if (userStats.coins < hackPrice) {
                 message.lineReply('`err:` You dont have enough coins for that!');
@@ -54,6 +54,15 @@ module.exports = {
                 } else{
                     message.reply('GG, you now have an additional business')
                 }
+            }
+        } else if(args[0] == 'duckplush'){
+            const duckpPrice = 20
+            if(userStats.coins < duckpPrice){
+                message.lineReply('`err:` You dont have enough coins for that!');
+            } else{
+                userStats.coins -= duckpPrice;
+                userStats.coins_spent += duckpPrice;
+                message.reply('GG, you bought' + item)
             }
         }
     }
