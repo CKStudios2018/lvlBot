@@ -2,6 +2,7 @@ module.exports = {
   name: 'bal',
   description: 'Ur balance',
   async run(message, args, Discord, userStats){
+    const guildMember = message.mentions.members.first();
     const balanceEmbed = new Discord.MessageEmbed()
             .setColor('RANDOM')
             .setTitle('Account details for ' + message.author.username)
@@ -12,7 +13,8 @@ module.exports = {
                 {name: 'Level', value: userStats.level, inline: true},
                 {name: 'Total XP', value: userStats.total_xp, inline: true},
                 {name: 'Coins Spent', value: userStats.coins_spent + ' coins', inline: true},
-                {name: 'Biz Owned', value: userStats.own_store, inline: true}
+                {name: 'Biz Owned', value: userStats.own_store, inline: true},
+                {name: 'Date joined', value: user.joinedTimestamp, inline: false}
             )
             .addField('\u200b', '\u200b')
             .addField("Help", '[Link](https://ckstudios2018.github.io/lvlBot/help/)')
