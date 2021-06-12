@@ -87,7 +87,7 @@ bot.on('message', (message) => {
                     }, {
                         id: Admin,
                         allow: ['VIEW_CHANNEL', 'SEND_MESSAGES', 'READ_MESSAGE_HISTORY', 'ADD_REACTIONS'] // Channel permissions for the admin role
-                    }].
+                    }]
                 })
             }
         }
