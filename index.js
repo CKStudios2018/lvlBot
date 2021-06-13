@@ -27,7 +27,7 @@ if(fs.existsSync('stats.json')) {
 }
 
 bot.on('message', (message) => {
-    if (!message.content.startsWith(prefix) || message.author.bot) return; // Checks if a message starts with the prfix.
+    if (!message.content.startsWith(prefix) || message.author.bot) return; // Checks if a message starts with the prfix or is sent by anothre bot.
 
     let channel = message.channel;
 
@@ -52,7 +52,7 @@ bot.on('message', (message) => {
     }
 
     const userStats = guildStats[message.author.id];
-    if (Date.now() - userStats.last_message > 60000) { // Makes it so that the bot redeem xp with 60 second intervals instead of every message to avoid spam letting people level up.
+    if (Date.now() - userStats.last_message > 60000) { // Makes it so that the bot gives xp with 60 second intervals instead of every message to avoid spam letting people level up.
         if(userStats.own_store == 0){ // Checks if the user doesn't own a store and applies these coin and xp values.
             userStats.xp += random.int(25, 35);
             userStats.coins += random.int(1, 5);
@@ -65,8 +65,8 @@ bot.on('message', (message) => {
         userStats.last_message = Date.now();
         const xpToNextLvl = 5 * Math.pow(userStats.level, 2) + 50 * userStats.level + 100;
         if(userStats.xp >= xpToNextLvl) {
-            const name = 'levels'; // A variable for channel names.
-            const Admin = message.guild.roles.cache.get("835850414183546910") // This is the admin role id. Change this id to the Admin role id in your server.
+            const name = 'levels'; // A const for the channel name to execute the following code in.
+            const Admin = message.member.roles.cache.some(r  => r.name === "Admin") // This is the admin role's definition for the next section of code. Change this to the Admin role of your server.
             userStats.level++;
             userStats.xp = userStats.xp - xpToNextLvl;
             if(message.guild.channels.cache.find(chnl => chnl.name === 'levels')) {
@@ -86,7 +86,7 @@ bot.on('message', (message) => {
 
                     }, {
                         id: Admin,
-                        allow: ['VIEW_CHANNEL', 'SEND_MESSAGES', 'READ_MESSAGE_HISTORY', 'ADD_REACTIONS'] // Channel permissions for the admin role
+                        allow: ['VIEW_CHANNEL', 'SEND_MESSAGES', 'READ_MESSAGE_HISTORY', 'ADD_REACTIONS'] // Channel permissions for the Admin role
                     }]
                 })
             }

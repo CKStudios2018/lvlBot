@@ -4,7 +4,7 @@ module.exports = {
   async run(message, args, jsonfile, stats, guildStats, userStats){ 
  const item = args[0]
         if(args[0] === 'levelswap'){
-            const swapPrice = 5500
+            const swapPrice = 55555
         if (userStats.coins < swapPrice) {
             message.lineReply('`err:` You dont have enough coins for that!');
             } else {
@@ -62,7 +62,8 @@ module.exports = {
             } else{
                 userStats.coins -= duckpPrice;
                 userStats.coins_spent += duckpPrice;
-                message.reply('GG, you bought' + item)
+                message.reply('GG, you bought ' + item);
+                message.channel.send('https://image.made-in-china.com/2f0j00siwfpzRghhqZ/Fluffy-Sitting-Animal-Stuffed-Cotton-Plush-Ce-Custom-Duck-Toy.jpg')
             }
         }
     }

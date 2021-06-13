@@ -10,7 +10,7 @@ module.exports = {
             .addFields(
                 {name: 'Lamborghini Huracán Evo', value: '`ID: lambo` 261274 coins', inline: true},
                 {name: 'Cookie', value: '`ID: cookie` 6 coins', inline: true},
-                {name: 'Level Swap', value: '`ID: levelswap` 5500 coins', inline: true},
+                {name: 'Level Swap', value: '`ID: levelswap` 55555 coins', inline: true},
                 {name: 'Socks', value: '`ID: socks` 12 coins', inline: true},
                 {name: 'V1RU5', value: '`ID: v1ru5` 24 coins', inline: true},
                 {name: 'biz', value: "`ID: biz` It's a business, ok? \n 2000 coins", inline: true},

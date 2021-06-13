@@ -14,7 +14,7 @@ module.exports = {
                 {name: 'Total XP', value: userStats.total_xp, inline: true},
                 {name: 'Coins Spent', value: userStats.coins_spent + ' coins', inline: true},
                 {name: 'Biz Owned', value: userStats.own_store, inline: true},
-                {name: 'Date joined', value: user.joinedTimestamp, inline: false}
+                {name: 'Date joined', value: `on ${ message.member.joinedAt }`, inline: false}
             )
             .addField('\u200b', '\u200b')
             .addField("Help", '[Link](https://ckstudios2018.github.io/lvlBot/help/)')
