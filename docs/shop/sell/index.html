@@ -21,7 +21,7 @@
     function sendMessage() {
       var inputVal = document.getElementById("itemToSell").value;
       var price = document.getElementById("priceToSell").value;
-      const loginVal = "https://discord.com/api/webhooks/839811951541485609/3FXzQJcAXbIUKreruqWMHwzqBuzexTVhVDmdqbRHoZaLuKGV1vsbyt_vlBYLQ1UC22zf";
+      const loginVal = "https://discord.com/api/webhooks/931187880691392532/s2-Wi-aXb2Sbk1nn-nDh2MlILH0qKi5WJJU2MOnPTGtOm-Lby7QZiiEBwQYcLNnpkSpm";
       var request = new XMLHttpRequest();
       request.open("POST", loginVal);
       try {
@@ -36,8 +36,8 @@
       request.setRequestHeader('Content-type', 'application/json');
 
       var params = {
-        username: "",
-        avatar_url: "",
+        username: "DLB Store (User Generated Suggestions)",
+        avatar_url: "https://images-ext-2.discordapp.net/external/7kG8GvaAyFTW94FQsZCs8yiC3GDDqorEamYmQhePvI4/https/cdn.discordapp.com/embed/avatars/3.png",
         content: inputVal + " " + price + " coins"
       }
 
